@@ -4,11 +4,11 @@ require('./config/db.config')
 const app = express();
 app.use(express.json());
 
-// const authRoutes = require('./routes/auth.routes');
-// app.use('/auth', authRoutes)
+const authRoutes = require('./routes/auth.routes');
+app.use('/auth', authRoutes)
 
-// const usersRoutes = require('./routes/users.routes');
-// app.use('/users', usersRoutes)
+const InformationsRoutes = require('./routes/addInformations.routes');
+app.use('/', InformationsRoutes)
 
 app.listen(process.env.PORT, (err)=>{
     if(err) throw err;
