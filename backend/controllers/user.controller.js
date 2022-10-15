@@ -8,6 +8,20 @@ const getUserInformation = async (req, res) => {
     return res.send(user)
 }
 
+const updateInformation = async (req, res) => {
+    i = req.params;
+    id = i.id;
+    const { education, experience, skills } = req.body;
+    const information = await Information.findOneAndUpdate(id, {
+        education,
+        experience,
+        skills
+    })
+
+return res.send(information)
+}
+
 module.exports = {
-    getUserInformation
+    getUserInformation,
+    updateInformation
 }
