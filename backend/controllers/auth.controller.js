@@ -19,12 +19,13 @@ const login = async (req, res)=>{
 }
 
 const signup = async (req, res)=>{
-    const {name, email, password} = req.body;
+    const {name, email, password , type} = req.body;
     try{
         const user = new User();
         user.name = name;
         user.email = email;
         user.password = await bcrypt.hash(password, 10);
+        user.type = type;
 
         await user.save();
         res.json(user)
