@@ -13,6 +13,10 @@ const informationsSchema = new mongoose.Schema({
         type: String,
         required: 'skills is required'
     },
+    user :{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'User'
+    }
 })
 
 module.exports = mongoose.model('Information',informationsSchema);
