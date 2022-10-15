@@ -22,14 +22,7 @@ const create = async (req, res) => {
 
         return res.send(userById);
     }
-    
-const userByInformation = async (req,res)=>{
-        const { id } = req.params;
-        const userByInformation = await Information.findById(id).populate('user');
-        res.send(userByInformation);
-    }
 
     module.exports = {
-        create,
-        userByInformation
+        create
     }

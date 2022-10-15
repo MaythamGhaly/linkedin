@@ -10,8 +10,6 @@ app.use('/auth', authRoutes)
 const UsersRoutes = require('./routes/users.routes');
 app.use('/', UsersRoutes)
 
-const InformationsRoutes = require('./routes/informations.routes');
-app.use('/', InformationsRoutes)
 
 app.listen(process.env.PORT, (err)=>{
     if(err) throw err;
