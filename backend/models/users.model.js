@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const {informationsSchema} = require('./addinformation.model');
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -23,6 +22,4 @@ const userSchema = new mongoose.Schema({
 
 })
 
-const User = mongoose.model('User', userSchema);
-
-module.exports = User ;
+module.exports = mongoose.model('User', userSchema);

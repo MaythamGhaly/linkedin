@@ -7,7 +7,10 @@ app.use(express.json());
 const authRoutes = require('./routes/auth.routes');
 app.use('/auth', authRoutes)
 
-const InformationsRoutes = require('./routes/addInformations.routes');
+const UsersRoutes = require('./routes/users.routes');
+app.use('/', UsersRoutes)
+
+const InformationsRoutes = require('./routes/informations.routes');
 app.use('/', InformationsRoutes)
 
 app.listen(process.env.PORT, (err)=>{
