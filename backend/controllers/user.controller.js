@@ -9,7 +9,6 @@ const getUserInformation = async (req, res) => {
 }
 
 const updateInformation = async (req, res) => {
-    console.log(req.user.informations[0])
     id = req.user.informations[0];
     const { education, experience, skills } = req.body;
     const information = await Information.findOneAndUpdate(id, {
