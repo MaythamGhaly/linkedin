@@ -2,7 +2,6 @@ const Post = require('../models/posts.model');
 const User = require('../models/users.model');
 
 const create = async (req, res) => {
-    console.log(req.user._id)
     id = req.user._id;
     const { job_title, job_descreption, specifics_of_the_job_role, requirements } = req.body;
     const post = await Post.create({

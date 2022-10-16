@@ -1,6 +1,7 @@
 const { ObjectID } = require('bson');
 const Information = require('../models/informations.model');
 const User = require('../models/users.model');
+const Post = require('../models/posts.model');
 
 const getUserInformation = async (req, res) => {
     id = req.user._id;
@@ -20,7 +21,13 @@ const updateInformation = async (req, res) => {
 return res.send(information)
 }
 
+const getAllPosts = async (req, res) => {
+    const user = await User.find({$where: 'this.posts.length > 0'}).populate('posts');
+    return res.send(user)
+}
+
 module.exports = {
     getUserInformation,
-    updateInformation
+    updateInformation,
+    getAllPosts
 }
