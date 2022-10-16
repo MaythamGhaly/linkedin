@@ -4,9 +4,9 @@ const {create} = require('../controllers/information.controller')
 const authMiddleware = require('../middlewares/auth.middleware')
 const router = Router();
 
-router.post('/get-user-information/:id',authMiddleware, getUserInformation);
-router.post('/update-information/:id',authMiddleware, updateInformation);
-router.post('/add-info/:id',authMiddleware, create);
+router.get('/get-user-information',authMiddleware, getUserInformation);
+router.post('/update-information',authMiddleware, updateInformation);
+router.post('/add-info',authMiddleware, create);
 
 
 module.exports = router;
