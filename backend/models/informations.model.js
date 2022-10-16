@@ -16,6 +16,10 @@ const informationsSchema = new mongoose.Schema({
     user :{
         type:mongoose.Schema.Types.ObjectId,
         ref:'User'
+    },
+    applicant : {
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Applicant'
     }
 })
 

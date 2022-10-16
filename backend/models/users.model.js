@@ -26,7 +26,11 @@ const userSchema = new mongoose.Schema({
     ],
     posts: [
         {type: mongoose.Schema.Types.ObjectId,ref:'Post'}
-    ]
+    ],
+    applicant :{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Applicant'
+    }
 
 })
 

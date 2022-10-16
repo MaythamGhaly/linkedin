@@ -20,7 +20,11 @@ const postsSchema = new mongoose.Schema({
     user :{
         type:mongoose.Schema.Types.ObjectId,
         ref:'User'
-    }
+    },
+    apllicants: [{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Applicant'
+    }]
 })
 
 module.exports = mongoose.model('Post',postsSchema);
