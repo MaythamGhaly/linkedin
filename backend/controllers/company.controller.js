@@ -2,9 +2,9 @@ const Post = require('../models/posts.model');
 const User = require('../models/users.model');
 
 const create = async (req, res) => {
-
+    console.log(req.user._id)
     id = req.user._id;
-    const { job_title, job_descreption, specifics_of_the_job_role,requirements } = req.body;
+    const { job_title, job_descreption, specifics_of_the_job_role, requirements } = req.body;
     const post = await Post.create({
         job_title,
         job_descreption,
@@ -22,13 +22,13 @@ const create = async (req, res) => {
     return res.send(userById);
 }
 
-const getJobPosts = async (req, res) => {
+const getCompanyPost = async (req, res) => {
     id = req.user._id;
-    const user = await User.find().populate('posts');
+    const user = await User.find(id).populate('posts');
     return res.send(user)
 }
 
 module.exports = {
     create,
-    getJobPosts
+    getCompanyPost
 }
