@@ -16,8 +16,16 @@ const userSchema = new mongoose.Schema({
         required: 'password is required',
         select: false
     },
+    type :{
+        type : String,
+        required: 'type is required',
+        enum: ['Company', 'User']
+    },
     informations: [
         {type: mongoose.Schema.Types.ObjectId,ref:'Information'}
+    ],
+    posts: [
+        {type: mongoose.Schema.Types.ObjectId,ref:'Post'}
     ]
 
 })
