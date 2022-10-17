@@ -4,6 +4,9 @@ require('./config/db.config')
 const app = express();
 app.use(express.json());
 
+let cors = require("cors");
+app.use(cors())
+
 const authRoutes = require('./routes/auth.routes');
 app.use('/auth', authRoutes)
 
