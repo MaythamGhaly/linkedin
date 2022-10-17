@@ -7,14 +7,14 @@ const User = () => {
     const [education, setEducation] = useState('');
     const [experience, setExperience] = useState('');
     const [skills, setSkills] = useState('');
+    const [posts, setPosts] = useState([]);
 
 
 
-    const getUserInformations = async () =>{
+    const getUserInformations = async () => {
 
         const data = await axios.get("http://127.0.0.1:8000/get-user-information", { headers: { 'Authorization': `Bearer ${localStorage.getItem(`token`)}` } });
-        const user=data.data
-        console.log(user.email)
+        const user = data.data
         setName(user.name)
         setEmail(user.email)
         setEducation(user.informations[0].education)
@@ -22,8 +22,20 @@ const User = () => {
         setSkills(user.informations[0].skills)
 
     }
+
+    const getAllPosts = async () => {
+
+        const data = await axios.get("http://127.0.0.1:8000/get-all-posts", { headers: { 'Authorization': `Bearer ${localStorage.getItem(`token`)}` } });
+        const posts = data.data
+        setPosts(posts)
+        console.log(data.data)
+
+
+    }
+
     useEffect(() => {
         getUserInformations()
+        getAllPosts()
     }, [])
 
     return (
@@ -41,12 +53,24 @@ const User = () => {
                 <div className="w-2" >
                     <div class="left-1/2 -ml-0.5 w-0.5 h-screen bg-gray-600"></div>
                 </div>
-                <form className="w-1/2  border-2 mt-5">
-                    <div className=" flex flex-col items-center mt-6 ">
-                        <h2>company name: </h2>
-                        <h2>company email: </h2>
-                        <label className="font-semibold" > <p className="text-xs"> </p></label>
-                    </div>
+                <form className="w-1/2 mt-5">
+                    {posts.map((post) => (
+                        <div className=" flex flex-col border-2 rounded-3xl items-center mt-6 ">
+                            <h2>company name: {post.name} </h2>
+                            <h2>company email: {post.email}</h2>
+                            {
+                                post.posts.map((p , index)=>(
+                                    <div className="flex flex-col border rounded-3xl m-4 p-3 w-full gap-2">
+                                    <label className="font-semibold " >Job_title </label> <p className="text-xs" key={index}>{p.job_title} </p>
+                                    <label className="font-semibold " >Job_descreption </label> <p className="text-xs" key={index}>{p.job_descreption} </p>
+                                    <label className="font-semibold" >requirements </label> <p className="text-xs" key={index}>{p.requirements} </p>
+                                    <label className="font-semibold" >specifics_of_the_job_role </label> <p className="text-xs" key={index}>{p.specifics_of_the_job_role}</p>
+                                    </div>
+                                ))
+                            }
+                            <input type={"submit"} value="Easy apply" className="cursor-pointer bg-blue-600 p-2 rounded-lg text-white" />
+                        </div>
+                    ))}
                 </form>
             </div>
         </>
