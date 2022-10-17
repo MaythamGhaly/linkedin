@@ -29,8 +29,6 @@ const User = () => {
         const posts = data.data
         setPosts(posts)
         console.log(data.data)
-
-
     }
 
     useEffect(() => {
@@ -60,15 +58,15 @@ const User = () => {
                             <h2>company email: {post.email}</h2>
                             {
                                 post.posts.map((p , index)=>(
-                                    <div className="flex flex-col border rounded-3xl m-4 p-3 w-full gap-2">
+                                    <div id={p._id} className="flex flex-col border rounded-3xl m-4 p-3 w-full gap-2">
                                     <label className="font-semibold " >Job_title </label> <p className="text-xs" key={index}>{p.job_title} </p>
                                     <label className="font-semibold " >Job_descreption </label> <p className="text-xs" key={index}>{p.job_descreption} </p>
                                     <label className="font-semibold" >requirements </label> <p className="text-xs" key={index}>{p.requirements} </p>
                                     <label className="font-semibold" >specifics_of_the_job_role </label> <p className="text-xs" key={index}>{p.specifics_of_the_job_role}</p>
+                                    <input type={"submit"} value="Easy apply" className="cursor-pointer bg-blue-600 p-2 rounded-lg text-white" />
                                     </div>
                                 ))
                             }
-                            <input type={"submit"} value="Easy apply" className="cursor-pointer bg-blue-600 p-2 rounded-lg text-white" />
                         </div>
                     ))}
                 </form>
