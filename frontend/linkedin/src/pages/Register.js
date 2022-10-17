@@ -69,7 +69,7 @@ const Register = (onRegister) => {
                                 Company account
                             </option>
                         </select>
-                        <input type={"submit"} value="Register" className="bg-blue-600 p-2 rounded-lg text-white" />
+                        <input type={"submit"} value="Register" className="cursor-pointer bg-blue-600 p-2 rounded-lg text-white" />
                     </div>
                 </div>
             </form>

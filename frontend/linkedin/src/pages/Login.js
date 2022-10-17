@@ -54,7 +54,7 @@ const Login = () => {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
-                        <input type={"submit"} value="Login" className="bg-blue-600 p-2 rounded-lg text-white" />
+                        <input type={"submit"} value="Login" className="cursor-pointer bg-blue-600 p-2 rounded-lg text-white" />
                     </div>
                 </div>
             </form>
