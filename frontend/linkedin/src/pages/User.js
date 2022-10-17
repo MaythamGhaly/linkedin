@@ -9,8 +9,6 @@ const User = () => {
     const [skills, setSkills] = useState('');
     const [posts, setPosts] = useState([]);
 
-
-
     const getUserInformations = async () => {
 
         const data = await axios.get("http://127.0.0.1:8000/get-user-information", { headers: { 'Authorization': `Bearer ${localStorage.getItem(`token`)}` } });
@@ -36,6 +34,23 @@ const User = () => {
         getAllPosts()
     }, [])
 
+    const easyApply = async (e) =>{
+        e.preventDefault();
+
+        const post_id=e.target.id
+        const url = `http://127.0.0.1:8000/add-applicant`
+        const data = {
+            post_id: post_id
+        }
+        const response = await axios.post(url, data, { headers: { 'Authorization': `Bearer ${localStorage.getItem(`token`)}` } })
+        .then(function (response) {
+            alert("you are applied!")
+            return
+          })
+          .catch(function (error) {
+            console.log(error)
+          });
+    }
     return (
         <>
             <div className="flex">
@@ -51,25 +66,25 @@ const User = () => {
                 <div className="w-2" >
                     <div class="left-1/2 -ml-0.5 w-0.5 h-screen bg-gray-600"></div>
                 </div>
-                <form className="w-1/2 mt-5">
+                <div className="w-1/2 mt-5">
                     {posts.map((post) => (
                         <div className=" flex flex-col border-2 rounded-3xl items-center mt-6 ">
                             <h2>company name: {post.name} </h2>
                             <h2>company email: {post.email}</h2>
                             {
                                 post.posts.map((p , index)=>(
-                                    <div id={p._id} className="flex flex-col border rounded-3xl m-4 p-3 w-full gap-2">
+                                    <form onSubmit={easyApply} id={p._id} className="flex flex-col border rounded-3xl m-4 p-3 w-full gap-2">
                                     <label className="font-semibold " >Job_title </label> <p className="text-xs" key={index}>{p.job_title} </p>
                                     <label className="font-semibold " >Job_descreption </label> <p className="text-xs" key={index}>{p.job_descreption} </p>
                                     <label className="font-semibold" >requirements </label> <p className="text-xs" key={index}>{p.requirements} </p>
                                     <label className="font-semibold" >specifics_of_the_job_role </label> <p className="text-xs" key={index}>{p.specifics_of_the_job_role}</p>
-                                    <input type={"submit"} value="Easy apply" className="cursor-pointer bg-blue-600 p-2 rounded-lg text-white" />
-                                    </div>
+                                    <input  type={"submit"} value="Easy apply" className="cursor-pointer bg-blue-600 p-2 rounded-lg text-white" />
+                                    </form>
                                 ))
                             }
                         </div>
                     ))}
-                </form>
+                </div>
             </div>
         </>
     )
